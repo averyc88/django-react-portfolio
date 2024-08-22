@@ -1,5 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { fetchEducation } from '../services/api';
+import { Container, Row, Col, Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
+
 
 const Education = () => {
     const [education, setEducation] = useState([]);
@@ -18,19 +20,23 @@ const Education = () => {
     }, []);
 
     return (
-        <div>
-            <h2>Education</h2>
-            <ul>
+        <Container>
+            <h2 className="my-4 text-start">Education</h2>
+            <Row>
                 {education.map((item) => (
-                    <li key={item.id} style={{ marginBottom: '20px' }}>
-                        <h3>{item.degree} - {item.school}</h3>
-                        <p><strong>Years:</strong> {item.years}</p>
-                        <p><strong>Completed:</strong> {item.completed ? 'Yes' : 'No'}</p>
-                        <p><strong>Description:</strong> {item.description}</p>
-                    </li>
+                <Col md="6" lg="4" key={item.id} className="mb-4 d-flex align-items-stretch">
+                    <Card className="w-100">
+                    <CardBody>
+                        <CardTitle tag="h5">{item.degree} - {item.school}</CardTitle>
+                        <CardSubtitle tag="h6" className="mb-2 text-muted">Years: {item.years}</CardSubtitle>
+                        <CardText><strong>Completed:</strong> {item.completed ? 'Yes' : 'No'}</CardText>
+                        <CardText>{item.description}</CardText>
+                    </CardBody>
+                    </Card>
+                </Col>
                 ))}
-            </ul>
-        </div>
+            </Row>
+        </Container>
     );
 };
 

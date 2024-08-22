@@ -36,3 +36,19 @@
     transform: rotate(360deg);
   }
 }
+
+.card {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.card-body {
+  flex: 1;
+}
+
+.custom-sub-card-text {
+  font-size: 1.5rem;
+  font-weight: 300;
+  color:#282c34;
+}

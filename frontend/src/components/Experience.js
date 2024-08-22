@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { fetchExperience } from '../services/api';
+import { Container, Row, Col, Card, CardBody, CardTitle, CardSubtitle, CardText } from 'reactstrap';
 
 const Experience = () => {
     const [experience, setExperience] = useState([]);
@@ -18,18 +19,22 @@ const Experience = () => {
     }, []);
 
     return (
-        <div>
-            <h2>Experience</h2>
-            <ul>
+        <Container>
+            <h2 className="my-4 text-start">Experience</h2>
+            <Row>
                 {experience.map((item) => (
-                    <li key={item.id} style={{ marginBottom: '20px' }}>
-                        <h3>{item.title} - {item.company}</h3>
-                        <p><strong>Years:</strong> {item.years}</p>
-                        <p><strong>Description:</strong> {item.description}</p>
-                    </li>
+                <Col md="6" lg="4" key={item.id} className="mb-4 d-flex align-items-stretch">
+                    <Card className="w-100">
+                    <CardBody>
+                        <CardTitle tag="h5">{item.title} - {item.company}</CardTitle>
+                        <CardSubtitle tag="h6" className="mb-2 text-muted">Years: {item.years}</CardSubtitle>
+                        <CardText>{item.description}</CardText>
+                    </CardBody>
+                    </Card>
+                </Col>
                 ))}
-            </ul>
-        </div>
+            </Row>
+        </Container>
     );
 };
 
